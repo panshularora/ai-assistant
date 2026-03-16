@@ -17,5 +17,13 @@ def generate_tts(request: TTSRequest):
         result = generate_speech_audio(request.text, slow=request.slow)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
+    except RuntimeError as e:
+        raise HTTPException(status_code=503, detail=str(e))
 
     return {"audio_url": result.audio_url, "filename": result.filename}
+
+
+# New path (keeps legacy `/tts` working too)
+@router.post("/assistive/tts")
+def generate_tts_assistive(request: TTSRequest):
+    return generate_tts(request)

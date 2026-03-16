@@ -121,3 +121,9 @@ def simplify(request: SimplifyRequest):
         "audio_file": audio_url,
         "keywords": keywords,
     }
+
+
+# New path (keeps legacy `/simplify` working too)
+@router.post("/assistive/simplify")
+def simplify_assistive(request: SimplifyRequest):
+    return simplify(request)

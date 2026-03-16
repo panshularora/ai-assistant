@@ -48,3 +48,25 @@ app.include_router(progress_router)
 
 from app.routes.tts import router as tts_router
 app.include_router(tts_router)
+
+# New grouped routes (Assistive + Learning)
+from app.routes.assistive.assist import router as assist_router
+app.include_router(assist_router)
+
+from app.routes.assistive.vocab import router as assistive_vocab_router
+app.include_router(assistive_vocab_router)
+
+from app.routes.assistive.tts import router as assistive_tts_router
+app.include_router(assistive_tts_router)
+
+from app.routes.assistive.simplify import router as assistive_simplify_router
+app.include_router(assistive_simplify_router)
+
+from app.routes.learning.phonics import router as learning_phonics_router
+app.include_router(learning_phonics_router)
+
+from app.routes.learning.exercises import router as learning_exercises_router
+app.include_router(learning_exercises_router)
+
+from app.routes.learning.spelling import router as learning_spelling_router
+app.include_router(learning_spelling_router)

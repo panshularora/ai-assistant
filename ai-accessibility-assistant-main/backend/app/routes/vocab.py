@@ -1,16 +1,9 @@
-from fastapi import APIRouter
-import textstat
+"""Legacy route shim for backward compatibility.
 
-router = APIRouter()
+Prefer using `app.routes.assistive.vocab`.
+"""
 
-@router.get("/vocab/{word}")
-def get_word_help(word: str):
+from app.routes.assistive.vocab import router
 
-    simple_definition = f"{word} is a complex word. Try a simpler synonym."
+__all__ = ["router"]
 
-    return {
-        "word": word,
-        "is_difficult": textstat.difficult_words(word) > 0,
-        "suggested_simpler_form": word.lower(),
-        "definition_hint": simple_definition
-    }

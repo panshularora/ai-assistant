@@ -1,21 +1,10 @@
-from keybert import KeyBERT
-from functools import lru_cache
+"""Compatibility shim.
 
-@lru_cache(maxsize=1)
-def get_model():
-    return KeyBERT()
+The real implementation lives in `app.services.assistive.keyword_extractor`.
+Keep this module to avoid breaking older imports.
+"""
 
-def extract_keywords(text: str, top_n: int = 5):
-    if not text or text.isspace():
-        return []
+from app.services.assistive.keyword_extractor import extract_keywords
 
-    model = get_model()
-    keywords = model.extract_keywords(
-        text,
-        keyphrase_ngram_range=(1, 2),
-        stop_words="english",
-        top_n=top_n
-    )
+__all__ = ["extract_keywords"]
 
-    # Return only keyword strings
-    return [kw[0] for kw in keywords]

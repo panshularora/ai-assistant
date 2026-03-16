@@ -52,7 +52,7 @@ Text:
             {"role": "user", "content": user_prompt},
         ],
         temperature=0.3,
-    )
+    )     
 
     content = response.choices[0].message.content or ""
 

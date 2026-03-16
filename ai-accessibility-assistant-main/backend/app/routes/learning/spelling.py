@@ -20,3 +20,4 @@ def spelling(request: SpellingRequest):
         raise HTTPException(status_code=400, detail="text is required")
     return generate_scramble_tasks(text, max_words=request.max_words)
 
+    
